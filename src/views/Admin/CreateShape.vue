@@ -76,16 +76,21 @@ export default {
             axios.post(API_LOCATION + '/shapes', this.model.shape)
             .then(res=>{
                 alert("Successfully added new shape!");
+
+                // clear the form after successfully saved the record
                 this.model.shape = {
                     name: '',
                     shape: '',
                     color: '',
                     timestamp: ''
                 }
+
+                // clear the errorList after successfully saved the record
                 this.errorList = ''
             })
             .catch(function(error){
                 if(error.response){
+                    // if fails 422, will shows validation error message
                     if(error.response.status == 422){
                         mythis.errorList = error.response.data.data;
                     }

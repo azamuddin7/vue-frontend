@@ -89,6 +89,7 @@ export default{
                 })
                 .catch(function(error){
                     if(error.response){
+                        // if fails 404, will popup error message
                         if(error.response.status == 404){
                             alert(error.response.data.data);
                         }

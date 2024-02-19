@@ -78,6 +78,7 @@ export default {
             })
             .catch(function(error){
                 if(error.response){
+                    // if fails 404, will shows popup error message
                     if(error.response.status == 404){
                         alert(error.response.data.data);
                     }
@@ -96,13 +97,17 @@ export default {
             axios.put(API_LOCATION + `/shapes/${this.shapeId}`, this.model.shape)
             .then(res=>{
                 alert("Successfully update shape!");
+
+                // clear errorList when record is successfully updated
                 this.errorList = ''
             })
             .catch(function(error){
                 if(error.response){
+                    // if fails 422, will shows validation error message
                     if(error.response.status == 422){
                         mythis.errorList = error.response.data.data;
                     }
+                    // if fails 404, will shows popup error message
                     if(error.response.status == 404){
                         alert(error.response.data.data);
                     }
